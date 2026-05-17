@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>配当シミュレーター</title>
+</head>
+
+<body>
+    <h1>配当シミュレーター</h1>
+
+    <p>投資額を入力してください</p>
+    <input id="amount" type="number" placeholder="例：1000000">
+
+    <p>年利を入力してください（%）</p>
+    <input id="rate" type="number" placeholder="例：4">
+
+    <p>税率を入力してください（%）</p>
+    <input id="tax" type="number" placeholder="例：20.315">
+
+    <br><br>
+
+    <button onclick="calculateDividend()">計算する</button>
+
+    <h2>結果</h2>
+    <p id="result">ここに結果が表示されます</p>
+
+    <script>
+        function calculateDividend() {
+            let amount = document.getElementById("amount").value;
+            let rate = document.getElementById("rate").value;
+            let tax = document.getElementById("tax").value;
+
+            let yearlyDividend = amount * (rate / 100);
+            let afterTaxDividend = yearlyDividend * (1 - tax / 100);
+            let monthlyDividend = afterTaxDividend / 12;
+
+            document.getElementById("result").textContent =
+                "年間の税引後配当は " + Math.floor(afterTaxDividend) + " 円、毎月換算では " + Math.floor(monthlyDividend) + " 円です。";
+        }
+    </script>
+</body>
+
+</html>
